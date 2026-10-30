@@ -12,7 +12,6 @@ body {
   background-attachment: fixed;
 }
 
-
 /* Reset standard scrollbar properties */
 * {
   scrollbar-width: auto !important;
@@ -27,6 +26,7 @@ body {
 
 ::-webkit-scrollbar-track {
   background: #555;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
