@@ -11,3 +11,29 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
+
+
+/* Reset standard scrollbar properties */
+* {
+  scrollbar-width: auto !important;
+  scrollbar-color: auto !important;
+}
+
+/* Dark mode scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #121212;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #242424;
+}
