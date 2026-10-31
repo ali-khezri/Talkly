@@ -13,9 +13,6 @@ async function protectedRoute(req, res, next) {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log("Decoded JWT:", decoded);
-    console.log("Database:", User.db.name);
-
     if (!decoded) {
       return res.status(401).json({ error: "Unathorized - Invalid Token" });
     }

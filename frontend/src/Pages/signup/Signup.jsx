@@ -1,14 +1,38 @@
+import { Link } from "react-router-dom";
 import GenderCheckbox from "./GenderCheckbox";
+import { useState } from "react";
+import useSignup from "../../hooks/useSignup";
 
 function Signup() {
+  const [inputs, setInputs] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+  });
+
+  // eslint-disable-next-line no-unused-vars
+  const { loading, signup } = useSignup();
+
+  function handleCheckboxChange(gender) {
+    setInputs({ ...inputs, gender });
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    await signup(inputs);
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
-          Signup <span className="text-purple-500">Talkly</span>
+          Sign Up <span className="text-purple-500">Talkly</span>
         </h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label className="label p-2">
               <span className="text-base label-text">Full Name</span>
@@ -17,6 +41,10 @@ function Signup() {
               type="text"
               placeholder="Ali Khezri"
               className="w-full input input-bordered h-10"
+              value={inputs.fullName}
+              onChange={(e) =>
+                setInputs({ ...inputs, fullName: e.target.value })
+              }
             />
           </div>
 
@@ -28,6 +56,10 @@ function Signup() {
               type="text"
               placeholder="khz_ali"
               className="w-full input input-bordered h-10"
+              value={inputs.username}
+              onChange={(e) =>
+                setInputs({ ...inputs, username: e.target.value })
+              }
             />
           </div>
 
@@ -39,6 +71,10 @@ function Signup() {
               type="password"
               placeholder="Enter password"
               className="w-full input input-bordered h-10"
+              value={inputs.password}
+              onChange={(e) =>
+                setInputs({ ...inputs, password: e.target.value })
+              }
             />
           </div>
 
@@ -50,21 +86,35 @@ function Signup() {
               type="password"
               placeholder="Enter Confirm Password"
               className="w-full input input-bordered h-10 mb-2"
+              value={inputs.confirmPassword}
+              onChange={(e) =>
+                setInputs({ ...inputs, confirmPassword: e.target.value })
+              }
             />
           </div>
 
-          <GenderCheckbox />
+          <GenderCheckbox
+            onCheckboxChange={handleCheckboxChange}
+            selectedGender={inputs.gender}
+          />
 
-          <a
-            href="#"
+          <Link
+            to="/login"
             className="text-sm hover:underline hover:text-purple-500  inline-block"
           >
-            Already have an account
-          </a>
+            Already have an account?
+          </Link>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2 border border-slate-700">
-              Signup
+            <button
+              className="btn btn-block btn-sm mt-2 border border-slate-700"
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
