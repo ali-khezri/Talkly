@@ -3,6 +3,7 @@ import useLogout from "../../hooks/useLogout";
 
 function LogoutButton() {
   const { loading, logout } = useLogout();
+  
   return (
     <div className="mt-auto">
       {!loading ? (

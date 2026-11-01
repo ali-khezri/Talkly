@@ -48,8 +48,6 @@ function useSignup() {
       localStorage.setItem("talkly-user", JSON.stringify(data));
 
       setAuthUser(data);
-
-      console.log(data);
     } catch (error) {
       toast.error(error.message);
     } finally {

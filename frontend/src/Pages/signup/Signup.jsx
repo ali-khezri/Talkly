@@ -12,7 +12,6 @@ function Signup() {
     gender: "",
   });
 
-  // eslint-disable-next-line no-unused-vars
   const { loading, signup } = useSignup();
 
   function handleCheckboxChange(gender) {

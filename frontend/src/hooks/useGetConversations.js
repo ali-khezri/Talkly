@@ -7,11 +7,13 @@ function useGetConversations() {
   const [conversations, setConverstions] = useState([]);
 
   useEffect(() => {
+    const controller = new AbortController();
+    
     async function getConversations() {
       setLoading(true);
 
       try {
-        const res = await fetch("/api/users");
+        const res = await fetch("/api/users", { signal: controller.signal });
 
         const data = await res.json();
 
@@ -21,13 +23,19 @@ function useGetConversations() {
 
         setConverstions(data);
       } catch (error) {
-        toast.error(error.message);
+        if (error.name !== "AbortError") {
+          toast.error(error.message);
+        }
       } finally {
         setLoading(false);
       }
     }
 
     getConversations();
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return { loading, conversations };
