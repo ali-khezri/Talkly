@@ -8,6 +8,20 @@ The application uses Socket.IO to enable real-time communication, MongoDB to per
 
 **[View Live Application](https://talkly-vot6.onrender.com/)**
 
+## Test Accounts
+
+You can use the following accounts to explore the application:
+
+| Username | Password |
+|---|---|
+| `bita-moo` | `123456` |
+| `ali_client` | `123456` |
+| `amir_client` | `123456` |
+| `test` | `123456` |
+
+**Note:** These are demo accounts intended for testing the application's features. Please do not use personal information or sensitive data when interacting with them.
+
+
 ## Features
 
 - **User Authentication** — Sign up, log in, and log out.
