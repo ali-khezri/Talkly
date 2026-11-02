@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import Conversation from "../models/conversationModel.js";
 import Message from "../models/messageModel.js";
 import User from "../models/userModel.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export async function sendMessage(req, res) {
   try {
@@ -60,6 +61,12 @@ export async function sendMessage(req, res) {
     }
 
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    const receiverSocketId = getReceiverSocketId(receiverId);
+
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(201).json(newMessage);
   } catch (error) {
