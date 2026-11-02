@@ -23,7 +23,7 @@ export function SocketContextProvider({ children }) {
     if (!authUser?._id) return;
 
     if (authUser) {
-      const socket = io("http://localhost:5000", {
+      const socket = io("https://talkly-vot6.onrender.com", {
         query: { userId: authUser._id },
       });
 
