@@ -4,6 +4,10 @@ Talkly is a full-stack real-time messaging application built with the MERN stack
 
 The application uses Socket.IO to enable real-time communication, MongoDB to persist users and messages, and React to build an interactive user interface.
 
+## Live Demo
+
+**[View Live Application](https://talkly-vot6.onrender.com/)**
+
 ## Features
 
 - **User Authentication** — Sign up, log in, and log out.
